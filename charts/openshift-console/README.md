@@ -8,8 +8,8 @@ This Helm Chart was not developed by me, all credit goes to https://gitlab.com/a
 ## TL;DR
 
 ```console
-$ helm repo add av1o https://av1o.gitlab.io/charts
-$ helm install bridge av1o/openshift-console
+$ helm repo add ashmantis https://ashmantis1.github.io/helm-charts
+$ helm install bridge ashmantis/openshift-console
 ```
 
 ## Introduction
@@ -28,7 +28,7 @@ This behaviour can be configured with the `extraEnv` map.
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install my-release av1o/openshift-console
+$ helm install my-release ashmantis/openshift-console
 ```
 
 The command deploys the console on the Kubernetes cluster in the default configuration.
