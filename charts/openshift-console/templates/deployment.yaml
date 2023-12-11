@@ -1,9 +1,9 @@
 {{- /*
 #### COPYRIGHT NOTICE ####
 # This file has been modified from its original source: https://gitlab.com/av1o/charts/-/blob/master/charts/openshift-console/templates/deployment.yaml
-apiVersion: apps/v1
 */ -}}
 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "openshift-console.fullname" . }}
