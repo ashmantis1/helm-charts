@@ -85,7 +85,7 @@ console:
     enabled: true
     issuerUrl: https://dex.example.org
     clientId: kubernetes # Leave unset for and replace with extra env when using secrets
-    clientSecret: # Leave unset for and replace with extra env when using secrets
+    clientSecret: hunter2 # Leave unset for and replace with extra env when using secrets
 
 rbac:
   enabled: false
