@@ -8,7 +8,7 @@ This Helm Chart was not developed by me, all credit goes to https://gitlab.com/a
 ## TL;DR
 
 ```console
-$ helm repo add ashmantis https://ashmantis1.github.io/helm-charts
+$ helm repo add ashmantis https://charts.ashmantis.com
 $ helm install bridge ashmantis/openshift-console
 ```
 
