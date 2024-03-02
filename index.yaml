@@ -3,6 +3,16 @@ entries:
   jellyfin:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-03-02T13:57:26.627765594Z"
+    description: A Helm chart to deploy jellyfin media server
+    digest: 8e75749d28d364920b886acd638f1a68aa0f0f8b19fed05e64f485395850d619
+    name: jellyfin
+    type: application
+    urls:
+    - https://github.com/ashmantis1/helm-charts/releases/download/jellyfin-0.1.5/jellyfin-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-03-02T13:48:21.994316011Z"
     description: A Helm chart to deploy jellyfin media server
     digest: 913b3be3da08bd09365bfb7dfdc2f8c4fa027524c23b5e8a76d7541329f109fd
@@ -32,6 +42,17 @@ entries:
     - https://github.com/ashmantis1/helm-charts/releases/download/jellyfin-0.1.1/jellyfin-0.1.1.tgz
     version: 0.1.1
   openshift-console:
+  - apiVersion: v2
+    appVersion: 4.10.0
+    created: "2024-03-02T13:57:26.746140641Z"
+    description: OpenShift Cluster Console UI
+    digest: cc59485773c20ebb209b509fb293c9768b99eea14beec090ed7ad17d9d2de853
+    icon: https://avatars0.githubusercontent.com/u/792337?s=200&v=4
+    name: openshift-console
+    type: application
+    urls:
+    - https://github.com/ashmantis1/helm-charts/releases/download/openshift-console-0.3.16/openshift-console-0.3.16.tgz
+    version: 0.3.16
   - apiVersion: v2
     appVersion: 4.10.0
     created: "2024-03-02T13:38:29.885526239Z"
@@ -109,4 +130,4 @@ entries:
     urls:
     - https://github.com/ashmantis1/helm-charts/releases/download/openshift-console-0.3.8/openshift-console-0.3.8.tgz
     version: 0.3.8
-generated: "2024-03-02T13:48:21.994367557Z"
+generated: "2024-03-02T13:57:26.746181337Z"
