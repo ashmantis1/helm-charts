@@ -1,0 +1,33 @@
+{{- if .Values.persistentVolumes.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "jellyfin.name" . }}-config
+spec:
+  storageClassName: {{- .Values.persistentVolumes.storageClass }}
+  resources:
+    requests:
+      storage: {{- .Values.persistentVolumes.configSize }}
+  volumeMode: Filesystem
+  {{- with .Values.persistentVolumes.accessModes }}
+  accessModes:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}
+---
+{{- if .Values.persistentVolumes.enabled }}
+{{- if  .Values.persistentVolumes.cache }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "jellyfin.name" . }}-cache
+spec:
+  storageClassName: {{- .Values.persistentVolumes.storageClass }}
+  resources:
+    requests:
+      storage: {{- .Values.persistentVolumes.cacheSize }}
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+{{- end }}
+{{- end }}
