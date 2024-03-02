@@ -61,7 +61,7 @@ spec:
             {{- omit .Values.securityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
           image: "{{ .Values.image.registry}}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}z
           env:
             - name: BRIDGE_DOCUMENTATION_BASE_URL
               value: https://kubernetes.io/docs/

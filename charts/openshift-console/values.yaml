@@ -70,6 +70,8 @@ extraEnv: []
 #       name: my-secret
 #       key: my-secret-key
 
+args: ["-custom-logo-file", "test.png"]
+
 volumes: []
 # - name: my-volume
 #   mountPath: /foo/bar
