@@ -51,9 +51,9 @@ spec:
           - {{ . | toYaml | nindent 12 | trim }}
           {{- end }}
           {{- if .Values.persistentVolumes.enabled }}
-          - name: {{ include "jellyfin.name" . }}-config
+          - name: config
             mountPath: /config
-          - name: {{ include "jellyfin.name" . }}-cache
+          - name: cache
             mountPath: /cache
           {{- end }}
           {{- if not .Values.volumeMounts }} 
@@ -64,10 +64,24 @@ spec:
           
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.extraVolumes }}
       volumes: 
-        {{- toYaml . | nindent 8 }}
+      {{- range .Values.extraVolumes }}
+      - {{ . | toYaml | nindent 8 | trim }}
       {{- end }}
+      {{- if .Values.persistentVolumes.enabled }}
+      - name: config
+        persistentVolumeClaim:
+          claimName: {{ include "jellyfin.name" . }}-config
+      - name: cache
+        persistentVolumeClaim:
+          claimName: {{ include "jellyfin.name" . }}-cache
+      {{- end }}
+      {{- if not .Values.volumeMounts }} 
+        {{- if not .Values.persistentVolumes.enabled }}
+          []
+        {{- end }}
+      {{- end }}
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
