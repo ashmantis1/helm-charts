@@ -3,6 +3,16 @@ entries:
   jellyfin:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-03-02T14:07:51.18377548Z"
+    description: A Helm chart to deploy jellyfin media server
+    digest: de9f35b97c22112e72101a6b90a15462fd8e12e25258ba603ddb3efc3f775954
+    name: jellyfin
+    type: application
+    urls:
+    - https://github.com/ashmantis1/helm-charts/releases/download/jellyfin-0.1.7/jellyfin-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-03-02T14:05:13.437930708Z"
     description: A Helm chart to deploy jellyfin media server
     digest: 9b2606fbab0d66ffb6febc38986a76ba92e8d30b9cfaa6db704269a2d79bd79c
@@ -140,4 +150,4 @@ entries:
     urls:
     - https://github.com/ashmantis1/helm-charts/releases/download/openshift-console-0.3.8/openshift-console-0.3.8.tgz
     version: 0.3.8
-generated: "2024-03-02T14:05:13.437972716Z"
+generated: "2024-03-02T14:07:51.183816868Z"
