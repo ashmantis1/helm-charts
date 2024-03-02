@@ -7,7 +7,7 @@ spec:
   storageClassName: {{ .Values.persistentVolumes.storageClass }}
   resources:
     requests:
-      storage: {{- .Values.persistentVolumes.configSize }}
+      storage: {{ .Values.persistentVolumes.configSize }}
   volumeMode: Filesystem
   {{- with .Values.persistentVolumes.accessModes }}
   accessModes:
@@ -25,7 +25,7 @@ spec:
   storageClassName: {{ .Values.persistentVolumes.storageClass }}
   resources:
     requests:
-      storage: {{- .Values.persistentVolumes.cacheSize }}
+      storage: {{ .Values.persistentVolumes.cacheSize }}
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
