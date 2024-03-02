@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ include "jellyfin.name" . }}-config
 spec:
-  storageClassName: {{- .Values.persistentVolumes.storageClass }}
+  storageClassName: {{ .Values.persistentVolumes.storageClass }}
   resources:
     requests:
       storage: {{- .Values.persistentVolumes.configSize }}
@@ -22,7 +22,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ include "jellyfin.name" . }}-cache
 spec:
-  storageClassName: {{- .Values.persistentVolumes.storageClass }}
+  storageClassName: {{ .Values.persistentVolumes.storageClass }}
   resources:
     requests:
       storage: {{- .Values.persistentVolumes.cacheSize }}
