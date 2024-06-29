@@ -84,6 +84,17 @@ entries:
   openshift-console:
   - apiVersion: v2
     appVersion: 4.10.0
+    created: "2024-06-29T11:03:56.663206759Z"
+    description: OpenShift Cluster Console UI
+    digest: 785d53d659b247b76424c258302919d200aa0f046afcd598884e12fa22d83fe1
+    icon: https://avatars0.githubusercontent.com/u/792337?s=200&v=4
+    name: openshift-console
+    type: application
+    urls:
+    - https://github.com/ashmantis1/helm-charts/releases/download/openshift-console-0.3.17/openshift-console-0.3.17.tgz
+    version: 0.3.17
+  - apiVersion: v2
+    appVersion: 4.10.0
     created: "2024-03-02T13:57:26.746140641Z"
     description: OpenShift Cluster Console UI
     digest: cc59485773c20ebb209b509fb293c9768b99eea14beec090ed7ad17d9d2de853
@@ -170,4 +181,4 @@ entries:
     urls:
     - https://github.com/ashmantis1/helm-charts/releases/download/openshift-console-0.3.8/openshift-console-0.3.8.tgz
     version: 0.3.8
-generated: "2024-03-03T01:22:35.127449635Z"
+generated: "2024-06-29T11:03:56.663264817Z"
