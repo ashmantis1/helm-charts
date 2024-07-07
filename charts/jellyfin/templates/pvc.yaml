@@ -27,7 +27,9 @@ spec:
     requests:
       storage: {{ .Values.persistentVolumes.cacheSize }}
   volumeMode: Filesystem
+  {{- with .Values.persistentVolumes.accessModes }}
   accessModes:
-    - ReadWriteOnce
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 {{- end }}
 {{- end }}
