@@ -1,0 +1,21 @@
+{{- range $ip:=.Values.fakefish_hosts }}
+{{- with $ -}}
+{{- $host := $ip | replace "." "-" -}}
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ include "fakefish.fullname" . }}-{{ $host }}
+  name: {{ include "fakefish.fullname" . }}-{{ $host }}
+spec:
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+  selector:
+    app: {{ include "fakefish.fullname" . }}-{{ $host }}
+  type: ClusterIP
+{{- end }}
+---
+{{- end }}

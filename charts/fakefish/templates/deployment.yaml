@@ -1,0 +1,43 @@
+{{- range $ip:=.Values.fakefish_hosts }}
+{{- with $ -}}
+{{- $host := $ip | replace "." "-" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "fakefish.fullname" . }}-{{ $host }}
+  labels:
+    app: {{ include "fakefish.fullname" . }}-{{ $host }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "fakefish.fullname" . }}-{{ $host }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ include "fakefish.fullname" . }}-{{ $host }}
+        {{- include "fakefish.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}-{{ $host }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          args:
+          - "--remote-bmc"
+          - "{{ $ip }}"
+          - "--tls-mode"
+          - "disabled"
+{{- end }}
+---
+{{- end }}
