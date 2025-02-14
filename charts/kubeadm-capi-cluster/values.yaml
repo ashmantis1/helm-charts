@@ -5,6 +5,7 @@ namespace:
   #   app: kubeadm
 cluster:
   name: kubeadm
+  labels: {}
   networks:
     pods:
       cidrBlocks:
