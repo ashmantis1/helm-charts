@@ -1,0 +1,20 @@
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: {{ .Values.cluster.name }}
+spec:
+  clusterNetwork:
+    pods: 
+    {{- toYaml .Values.cluster.networks.pods | nindent 6}}
+    services:
+    {{- toYaml .Values.cluster.networks.services | nindent 6}}
+  controlPlaneRef:
+    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+    kind: KubeadmControlPlane
+    name: {{ .Values.cluster.name }}
+    namespace: {{ .Values.namespace.name }} 
+  infrastructureRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: Metal3Cluster
+    name: {{ .Values.cluster.name }}
+    namespace: {{ .Values.namespace.name }} 

@@ -1,0 +1,75 @@
+namespace: 
+  name: clusters
+  create: false
+  # labels:
+  #   app: kubeadm
+cluster:
+  name: kubeadm
+  networks:
+    pods:
+      cidrBlocks:
+        - 10.40.0.0/18
+    services:
+      cidrBlocks:
+        - 10.96.0.0/12
+kubernetes:
+  version: v1.32.1
+
+controlPlane:
+  skipKubeProxy: false
+  schedulable: false
+  scaleIn: true
+  maxSurge: 0
+  loadbalancer:
+    kubevip: 
+      enabled: true
+      image: 
+        name: ghcr.io/kube-vip/kube-vip
+        tag: latest
+  endpoint:
+    host: 0.0.0.0/0
+    port: 6443
+    interface: eno1
+  replicas: 1
+  files: []
+  mounts: []
+  diskSetup: {}
+  postKubeadmCommands: []
+
+workers:
+  replicas: 0
+  files: []
+  mounts: []
+  diskSetup: {}
+
+machines:
+  nodepool: nodepool0
+  nodeReuse: true
+  image:
+    # NOTE: both url's can be templated with the .Values.kubernetes.version field by placing
+    # ${version} where you want the version to be in the url. This helps prevent incorrect version
+    # deployment.
+    checksum: 
+      url: ""
+      type: sha256
+    format: qcow2
+    url: ""
+  controlPlane:
+    hostSelector:
+      matchLabels:
+        role: control-plane
+  workers:
+    hostSelector:
+      matchLabels:
+        role: worker
+  
+cloudInit:
+  users: []
+    #- name: user
+    #  sshAuthorizedKeys:
+    #  - <ssh key>
+    #  sudo: ALL=(ALL) NOPASSWD:ALL
+  mounts: []
+  diskSetup: {}
+    #filesystems: []
+    #partitions: []

@@ -1,0 +1,89 @@
+namespace: 
+  name: clusters
+  create: false
+  labels:
+    app: clusters
+cluster:
+  name: kubeadm
+  networks:
+    pods:
+      cidrBlocks:
+        - 10.40.0.0/18
+    services:
+      cidrBlocks:
+        - 10.96.0.0/12
+kubernetes:
+  version: 1.32.1
+controlPlane:
+  skipKubeProxy: true
+  schedulable: true
+  scaleIn: true
+  maxSurge: 0
+  loadbalancer:
+    kubevip: 
+      enabled: true
+      image: 
+        name: ghcr.io/kube-vip/kube-vip
+        tag: latest
+  endpoint:
+    host: 10.140.2.100
+    port: 6443
+    interface: eno1
+  replicas: 3
+  files: []
+  mounts:
+    - - LABEL=longhorn
+      - /var/lib/longhorn
+  diskSetup:
+    filesystems:
+      - device: /dev/sda
+        filesystem: ext4
+        label: longhorn
+    partitions: []
+    #- device: /dev/sda
+    #    overwrite: true
+    #    tableType: gpt
+  postKubeadmCommands: []
+    #  - KUBECONFIG=/etc/kubernetes/admin.conf kubectl taint node $(hostname) node-role.kubernetes.io/control-plane:NoSchedule-
+
+workers:
+  replicas: 0
+  users: []
+  mounts: []
+  diskSetup: {}
+
+machines:
+  nodepool: nodepool0
+  nodeReuse: true
+  image:
+    # NOTE: both url's can be templated with the .Values.kubernetes.version value by placing the string:
+    # ${version} where you want the version to be in the url. This helps prevent incorrect version deployment.
+    # It will template .Values.kubernetes.version string exactly so make sure that value matches the url
+    checksum: 
+      url: "https://gitlab.apps.ashman.world/api/v4/projects/3/packages/generic/release/${version}/SHA256SUM"
+      type: sha256
+    format: qcow2
+    url: "https://gitlab.apps.ashman.world/api/v4/projects/3/packages/generic/release/${version}/kube-node-image.qcow2"
+  controlPlane:
+    hostSelector:
+      matchLabels:
+        role: control-plane
+  workers:
+    hostSelector:
+      matchLabels:
+        role: worker
+# Global cloudInit values (will be applied to both control plane and worker nodes)
+cloudInit:
+  users:
+  - name: cloud-user
+    sshAuthorizedKeys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF6leLiXjd46rW2/bKTyFtEBXv8A47Ti0kd49CcexgLy
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    #- name: user
+    #  sshAuthorizedKeys:
+    #  - <ssh key>
+    #  sudo: ALL=(ALL) NOPASSWD:ALL
+  mounts: []
+  diskSetup: {}
+    #filesystems: []
+    #partitions: []
