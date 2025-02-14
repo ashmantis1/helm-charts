@@ -102,6 +102,17 @@ entries:
     urls:
     - https://github.com/ashmantis1/helm-charts/releases/download/jellyfin-0.1.1/jellyfin-0.1.1.tgz
     version: 0.1.1
+  kubeadm-capi-cluster:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-02-14T06:36:49.463823645Z"
+    description: Deploy a ClusterAPI Kubeadm provider cluster
+    digest: 7b307bf929190382391b50d59b59b9412a2803cc7a29e27b3281908820999381
+    name: kubeadm-capi-cluster
+    type: application
+    urls:
+    - https://github.com/ashmantis1/helm-charts/releases/download/kubeadm-capi-cluster-0.1.0/kubeadm-capi-cluster-0.1.0.tgz
+    version: 0.1.0
   openshift-console:
   - apiVersion: v2
     appVersion: 4.10.0
@@ -202,4 +213,4 @@ entries:
     urls:
     - https://github.com/ashmantis1/helm-charts/releases/download/openshift-console-0.3.8/openshift-console-0.3.8.tgz
     version: 0.3.8
-generated: "2025-02-13T01:26:32.951172604Z"
+generated: "2025-02-14T06:36:49.463867086Z"
