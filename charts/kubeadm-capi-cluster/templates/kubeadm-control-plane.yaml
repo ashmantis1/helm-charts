@@ -4,6 +4,12 @@ metadata:
   name: {{ .Values.cluster.name }}
 spec:
   kubeadmConfigSpec:
+    {{- with .Values.controlPlane.apiServer.extraArgs }}
+    clusterConfiguration:
+      apiServer:
+        extraArgs:
+        {{- . | toYaml | nindent 10 }}
+    {{- end }}
     initConfiguration:
       {{- if .Values.controlPlane.skipKubeProxy }}
       skipPhases:

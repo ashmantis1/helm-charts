@@ -21,6 +21,9 @@ controlPlane:
   schedulable: true
   scaleIn: false
   maxSurge: 1
+  apiServer:
+    extraArgs:
+      oidc-client-id: kubelogin
   loadbalancer:
     kubevip: 
       enabled: true
