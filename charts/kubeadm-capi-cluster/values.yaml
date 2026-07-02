@@ -20,6 +20,7 @@ controlPlane:
   skipKubeProxy: false
   schedulable: false
   scaleIn: true
+  certificatesExpiryDays: 21
   maxSurge: 0
   loadbalancer:
     kubevip: 

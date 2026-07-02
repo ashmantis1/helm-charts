@@ -3,6 +3,9 @@ kind: KubeadmControlPlane
 metadata:
   name: {{ .Values.cluster.name }}
 spec:
+  rollout:
+    before:
+      certificatesExpiryDays: {{ .Values.controlPlane.certificatesExpiryDays }}
   kubeadmConfigSpec:
     {{- with .Values.controlPlane.apiServer.extraArgs }}
     clusterConfiguration:
