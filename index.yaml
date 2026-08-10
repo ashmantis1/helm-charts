@@ -105,6 +105,16 @@ entries:
   kubeadm-capi-cluster:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-08-10T05:10:59.260802173Z"
+    description: Deploy a ClusterAPI Kubeadm provider cluster
+    digest: e891353683fbd429623e87911102806696ca23373331800f9e3f288267280889
+    name: kubeadm-capi-cluster
+    type: application
+    urls:
+    - https://github.com/ashmantis1/helm-charts/releases/download/kubeadm-capi-cluster-0.1.4/kubeadm-capi-cluster-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-07-02T09:13:39.346360322Z"
     description: Deploy a ClusterAPI Kubeadm provider cluster
     digest: 400b23dec41298103cfc911a268163d0d3ee913cce6e7e64645e66a374012b2a
@@ -243,4 +253,4 @@ entries:
     urls:
     - https://github.com/ashmantis1/helm-charts/releases/download/openshift-console-0.3.8/openshift-console-0.3.8.tgz
     version: 0.3.8
-generated: "2026-07-02T09:13:39.34641436Z"
+generated: "2026-08-10T05:10:59.260875401Z"
