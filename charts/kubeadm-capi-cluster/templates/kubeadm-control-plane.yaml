@@ -94,6 +94,8 @@ spec:
               - args:
                 - manager
                 env:
+                - name: KUBERNETES_ENDPOINT
+                  value: 127.0.0.1
                 - name: vip_arp
                   value: "true"
                 - name: port
