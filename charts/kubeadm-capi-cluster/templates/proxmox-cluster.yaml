@@ -14,4 +14,6 @@ spec:
     addresses: {{ .Values.proxmoxWorkers.ipam.addresses | toYaml | nindent 4}}
     gateway: {{ .Values.proxmoxWorkers.ipam.gateway }}
     prefix: {{ .Values.proxmoxWorkers.ipam.prefix }}
+  credentialsRef:
+    name: {{ .Values.proxmoxWorkers.credentialsRef }}
 {{ end }}

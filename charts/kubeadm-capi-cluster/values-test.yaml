@@ -55,6 +55,7 @@ controlPlane:
 # Very opinionated but maybe a useful guide. 
 proxmoxWorkers:
   enabled: true
+  credentialsRef: test
   # Must be set for this deployment as control plane can currently
   # not be managed by the proxmox provider due to limitations in the 
   # template system.
