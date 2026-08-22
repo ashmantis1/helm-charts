@@ -26,5 +26,6 @@ spec:
         kind: ProxmoxMachineTemplate
         name: proxmox-worker-{{ $node }}
       version: {{ $.Values.kubernetes.version }}
+---
 {{- end }}
 {{- end }}
