@@ -24,7 +24,7 @@ spec:
       infrastructureRef:
         apiGroup: infrastructure.cluster.x-k8s.io
         kind: ProxmoxMachineTemplate
-        name: proxmox-worker-{{ $node }}
+        name: {{$.Values.cluster.name }}-proxmox-worker-{{ $node }}
       version: {{ $.Values.kubernetes.version }}
 ---
 {{- end }}
