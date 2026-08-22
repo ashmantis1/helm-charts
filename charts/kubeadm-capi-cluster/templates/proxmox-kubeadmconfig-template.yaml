@@ -1,0 +1,23 @@
+{{ if .Values.proxmoxWorkers.enabled }}
+apiVersion: bootstrap.cluster.x-k8s.io/v1beta2
+kind: KubeadmConfigTemplate
+metadata:
+  name: {{ .Values.cluster.name }}-proxmox-worker
+  namespace: clusters
+spec:
+  template:
+    spec:
+      joinConfiguration:
+        nodeRegistration:
+          kubeletExtraArgs:
+          - name: provider-id
+            value: proxmox://{{`'{{ ds.meta_data.instance_id }}'`}}
+      {{- if and (not .Values.cloudInit.users) (not .Values.workers.users) }}
+      users: []
+      {{- else }}
+      users: 
+      {{- with .Values.cloudInit.users }}
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- end }}
+{{ end }}

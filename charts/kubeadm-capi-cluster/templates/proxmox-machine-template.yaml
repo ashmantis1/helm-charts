@@ -1,0 +1,16 @@
+{{- if .Values.proxmoxWorkers.enabled }}
+{{- range $key, $node := .Values.proxmoxWorkers.nodes }}
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+kind: ProxmoxMachineTemplate
+metadata:
+  name: {{ $.Values.cluster.name }}-proxmox-worker-{{ $node }}
+spec:
+  template:
+    spec: {{ $.Values.proxmoxWorkers.templateSpecs | toYaml | nindent 6 }}
+      templateSelector:
+        matchPolicy: bestSubset
+        matchTags:
+        - {{ $node }}
+        - {{ $.Values.kubernetes.version }}
+{{- end }}
+{{- end }}

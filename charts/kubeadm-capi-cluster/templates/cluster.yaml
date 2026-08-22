@@ -18,7 +18,14 @@ spec:
     name: {{ .Values.cluster.name }}
     namespace: {{ .Values.namespace.name }} 
   infrastructureRef:
+  {{- if .Values.proxmoxWorkers.enabled }}
+    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: ProxmoxCluster
+    name: {{ .Values.cluster.name }}
+    namespace: {{ .Values.namespace.name }} 
+  {{- else }}
     apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
     kind: Metal3Cluster
     name: {{ .Values.cluster.name }}
     namespace: {{ .Values.namespace.name }} 
+  {{ end }}

@@ -46,6 +46,23 @@ workers:
   mounts: []
   diskSetup: {}
 
+# Must deploy relevant proxmox credentials secret in target namespace
+# Very opinionated but maybe a useful guide. 
+proxmoxWorkers:
+  enabled: false
+  # Must be set for this deployment as control plane can currently
+  # not be managed by the proxmox provider due to limitations in the 
+  # template system.
+  externalManagedControlPlane: true
+  nodes: [] # List of node names. Will Create one machine deployment for each node due to template limitations
+  dnsServers: []
+  ipam: 
+    addresses: []
+    gateway: ""
+    prefix: 0
+  templateTags: [] # Currently not implemented
+  templateSpecs: {} #Proxmox machine template spec.template.spec values.
+
 machines:
   nodepool: nodepool0
   nodeReuse: true

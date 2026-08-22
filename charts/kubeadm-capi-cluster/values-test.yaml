@@ -15,7 +15,7 @@ cluster:
       cidrBlocks:
         - 10.96.0.0/12
 kubernetes:
-  version: 1.32.1
+  version: &version 1.32.1
 controlPlane:
   skipKubeProxy: true
   schedulable: true
@@ -50,6 +50,46 @@ controlPlane:
     #    tableType: gpt
   postKubeadmCommands: []
     #  - KUBECONFIG=/etc/kubernetes/admin.conf kubectl taint node $(hostname) node-role.kubernetes.io/control-plane:NoSchedule-
+
+# Must deploy relevant proxmox credentials secret in target namespace
+# Very opinionated but maybe a useful guide. 
+proxmoxWorkers:
+  enabled: true
+  # Must be set for this deployment as control plane can currently
+  # not be managed by the proxmox provider due to limitations in the 
+  # template system.
+  externalManagedControlPlane: true
+  nodes: 
+  - pve1
+  - pve2
+  dnsServers:
+  - test
+  ipam: 
+    addresses:
+    - 192.168.1.2-192.168.1.3
+    gateway: "192.168.1.1"
+    prefix: 24
+  templateTags:
+  - test
+  - 1.2.3
+  - *version
+  templateSpecs:
+    checks:
+      skipQemuGuestAgent: true
+    disks:
+      bootVolume:
+        disk: scsi0
+        sizeGb: 30
+    format: qcow2
+    full: true
+    memoryMiB: 8048
+    network:
+      networkDevices:
+      - bridge: svcnet
+        model: virtio
+        name: net0
+    numCores: 4
+    numSockets: 1
 
 workers:
   replicas: 0

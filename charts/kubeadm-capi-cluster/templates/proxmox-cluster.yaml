@@ -1,0 +1,17 @@
+{{ if .Values.proxmoxWorkers.enabled }}
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+kind: ProxmoxCluster
+metadata:
+  name: {{ .Values.cluster.name }}
+spec:
+  externalManagedControlPlane: {{ .Values.proxmoxWorkers.externalManagedControlPlane }}
+  allowedNodes: {{ .Values.proxmoxWorkers.nodes | toYaml | nindent 2}}
+  controlPlaneEndpoint:
+    host: {{ .Values.controlPlane.endpoint.host }}
+    port: {{ .Values.controlPlane.endpoint.port }}
+  dnsServers: {{ .Values.proxmoxWorkers.dnsServers | toYaml | nindent 2}}
+  ipv4Config:
+    addresses: {{ .Values.proxmoxWorkers.ipam.addresses | toYaml | nindent 4}}
+    gateway: {{ .Values.proxmoxWorkers.ipam.gateway }}
+    prefix: {{ .Values.proxmoxWorkers.ipam.prefix }}
+{{ end }}
