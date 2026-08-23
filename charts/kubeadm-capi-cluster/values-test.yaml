@@ -61,8 +61,12 @@ proxmoxWorkers:
   # template system.
   externalManagedControlPlane: true
   nodes: 
-  - pve1
-  - pve2
+  - name: pve1
+    replicas: 1
+  - name: pve2
+    replicas: 1
+    specsOverride:
+      memoryMiB: 16384
   dnsServers:
   - test
   ipam: 

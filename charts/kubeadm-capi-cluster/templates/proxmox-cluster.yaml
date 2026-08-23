@@ -5,7 +5,10 @@ metadata:
   name: {{ .Values.cluster.name }}
 spec:
   externalManagedControlPlane: {{ .Values.proxmoxWorkers.externalManagedControlPlane }}
-  allowedNodes: {{ .Values.proxmoxWorkers.nodes | toYaml | nindent 2}}
+  allowedNodes:
+  {{- range .Values.proxmoxWorkers.nodes }}
+  - {{ .name  }}
+  {{- end }}
   controlPlaneEndpoint:
     host: {{ .Values.controlPlane.endpoint.host }}
     port: {{ .Values.controlPlane.endpoint.port }}

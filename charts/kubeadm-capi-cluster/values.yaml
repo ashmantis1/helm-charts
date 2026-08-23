@@ -54,7 +54,11 @@ proxmoxWorkers:
   # not be managed by the proxmox provider due to limitations in the 
   # template system.
   externalManagedControlPlane: true
-  nodes: [] # List of node names. Will Create one machine deployment for each node due to template limitations
+  nodes: {} # List of object. Will Create one machine deployment for each node due to template limitations
+  #- name: node-name
+  #  replicas: no-of-replicas
+  #  specsOverride:
+  #    memoryMiB: 1239234
   dnsServers: []
   ipam: 
     addresses: []
