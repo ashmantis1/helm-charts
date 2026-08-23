@@ -67,6 +67,7 @@ proxmoxWorkers:
   templateTags: [] # Currently not implemented
   templateSpecs: {} #Proxmox machine template spec.template.spec values.
   credentialsRef: ""
+  schedulerHints: {}
 
 machines:
   nodepool: nodepool0

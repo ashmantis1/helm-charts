@@ -78,6 +78,8 @@ proxmoxWorkers:
   - test
   - 1.2.3
   - *version
+  schedulerHints:
+    memoryAdjustment: 0
   templateSpecs:
     checks:
       skipQemuGuestAgent: true

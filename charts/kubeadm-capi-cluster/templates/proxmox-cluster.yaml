@@ -5,6 +5,7 @@ metadata:
   name: {{ .Values.cluster.name }}
 spec:
   externalManagedControlPlane: {{ .Values.proxmoxWorkers.externalManagedControlPlane }}
+  schedulerHints: {{ .Values.proxmoxWorkers.schedulerHints | toYaml | nindent 4 }}
   allowedNodes:
   {{- range .Values.proxmoxWorkers.nodes }}
   - {{ .name  }}
