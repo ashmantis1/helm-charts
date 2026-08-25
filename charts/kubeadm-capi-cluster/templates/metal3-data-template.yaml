@@ -1,12 +1,12 @@
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: Metal3DataTemplate
 metadata:
   name: {{ .Values.cluster.name }}-controlplane-template
 spec:
   clusterName: {{ .Values.cluster.name }}
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: Metal3DataTemplate
 metadata:
   name: {{ .Values.cluster.name }}-workers-template

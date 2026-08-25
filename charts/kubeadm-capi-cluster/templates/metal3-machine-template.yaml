@@ -1,4 +1,4 @@
-apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: Metal3MachineTemplate
 metadata:
   name: {{ .Values.cluster.name }}-controlplane
@@ -17,7 +17,7 @@ spec:
         format: {{ .Values.machines.image.format }}
         url: {{ .Values.machines.image.url | replace "${version}" .Values.kubernetes.version }}
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: Metal3MachineTemplate
 metadata:
   name: {{ .Values.cluster.name }}-workers

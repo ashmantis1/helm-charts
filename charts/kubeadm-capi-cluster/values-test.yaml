@@ -17,6 +17,8 @@ cluster:
 kubernetes:
   version: &version 1.32.1
 controlPlane:
+  infrastructureType: Metal3MachineTemplate
+  infrastructureAPIVersion: infrastructure.cluster.x-k8s.io/v1beta2
   skipKubeProxy: true
   schedulable: true
   scaleIn: false

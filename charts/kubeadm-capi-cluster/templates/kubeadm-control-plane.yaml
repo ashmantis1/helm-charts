@@ -1,4 +1,4 @@
-apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+apiVersion: controlplane.cluster.x-k8s.io/v1beta2
 kind: KubeadmControlPlane
 metadata:
   name: {{ .Values.cluster.name }}
@@ -147,8 +147,8 @@ spec:
       {{ end }}
   machineTemplate:
     infrastructureRef:
-      apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
-      kind: Metal3MachineTemplate
+      apiVersion: {{ .Values.controlPlane.infrastructureAPIVersion }}
+      kind: {{ .Values.controlPlane.infrastructureType }}
       name: {{ .Values.cluster.name }}-controlplane
     nodeDrainTimeout: 0s
   replicas: {{ .Values.controlPlane.replicas }} 
