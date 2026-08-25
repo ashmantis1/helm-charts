@@ -3,12 +3,13 @@
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
 kind: ProxmoxMachineTemplate
 metadata:
-  name: {{ $.Values.cluster.name }}-proxmox-worker-{{ $node.name }}
+  {{- $specs := $.Values.proxmoxWorkers.templateSpecs | deepCopy -}}
+  {{- $override := $node.specsOverride -}}
+  {{- $merged := merge $override $specs  -}}
+  {{- $hash := $merged | toYaml | sha256sum | trunc 10 -}}
+  name: {{ $.Values.cluster.name }}-proxmox-worker-{{ $node.name }}-{{ $.Values.kubernetes.version }}-{{ $hash }}
 spec:
   template:
-    {{- $specs := $.Values.proxmoxWorkers.templateSpecs | deepCopy -}}
-    {{- $override := $node.specsOverride -}}
-    {{- $merged := merge $override $specs  }}
     spec: {{ $merged | toYaml | nindent 6 }}
       templateSelector:
         matchPolicy: bestSubset
