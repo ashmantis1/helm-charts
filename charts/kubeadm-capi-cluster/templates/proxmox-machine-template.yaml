@@ -6,7 +6,7 @@ metadata:
   {{- $specs := $.Values.proxmoxWorkers.templateSpecs | deepCopy -}}
   {{- $override := $node.specsOverride -}}
   {{- $merged := merge $override $specs  -}}
-  {{- $hash := $merged | toYaml | sha256sum | trunc 10 -}}
+  {{- $hash := $merged | toYaml | sha256sum | trunc 10 }}
   name: {{ $.Values.cluster.name }}-proxmox-worker-{{ $node.name }}-{{ $.Values.kubernetes.version }}-{{ $hash }}
 spec:
   template:
